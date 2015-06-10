@@ -9,34 +9,27 @@
 
 return array(
     array(
-        'name'  => 'hello-world',
-        'route' => 'hello-world',
-        'description' => 'Say hello to the world',
+        'name'              => 'hello-world',
+        'route'             => 'hello-world',
+        'description'       => 'Say hello to the world',
         'short_description' => 'Hello world',
-        'handler' => 'PHPCG\Command\HelloWorld',
+        'handler'           => 'PHPCG\Command\HelloWorld',
     ),
     array(
-        'name'  => 'hello-you',
-        'route' => 'hello-you <you>',
-        'description' => 'Say hello to you',
-        'short_description' => 'Hello you',
+        'name'                 => 'hello-you',
+        'route'                => 'hello-you <you>',
+        'description'          => 'Say hello to you',
+        'short_description'    => 'Hello you',
         'options_descriptions' => array(
-            '<you>' => 'Your name',
+            '<you>' => 'Your name'
         ),
-        'handler' => 'PHPCG\Command\HelloYou',
+        'handler'              => 'PHPCG\Command\HelloYou',
     ),
     array(
-        'name'  => 'hello-someone',
-        'route' => 'hello-someone',
-        'description' => 'Say hello to someone',
+        'name'              => 'hello-someone',
+        'route'             => 'hello-someone',
+        'description'       => 'Say hello to someone',
         'short_description' => 'Hello someone',
-        'handler' => 'PHPCG\Command\HelloSomeOne',
-    ),
-    array(
-        'name'  => 'choose-color',
-        'route' => 'choose-color',
-        'description' => 'Choose any color',
-        'short_description' => 'Choose color',
-        'handler' => 'PHPCG\Command\ChooseColor',
+        'handler'           => 'PHPCG\Command\HelloSomeOne',
     ),
 );

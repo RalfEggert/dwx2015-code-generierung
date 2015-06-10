@@ -13,11 +13,11 @@ use ZF\Console\Application;
 // define application root
 define('DWX2015_PHPCG_ROOT', __DIR__ . '/..');
 
-// get vendor autoloading
-include DWX2015_PHPCG_ROOT . '/vendor/autoload.php';
-
 // define our current version
 define('VERSION', '1.0.0');
+
+// get vendor autoloading
+include DWX2015_PHPCG_ROOT . '/vendor/autoload.php';
 
 // get routes
 $routes = include DWX2015_PHPCG_ROOT . '/config/routes.php';
@@ -28,9 +28,12 @@ $console = Console::getInstance();
 // build line
 $line = str_pad('-', $console->getWidth(), '-');
 
+// write first line
+$console->writeLine($line);
+
 // start new application
 $application = new Application(
-    'DWX2015 PHP Code Generator',
+    'PHP Code Generator (DWX2015)',
     VERSION,
     $routes,
     $console

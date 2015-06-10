@@ -1,7 +1,6 @@
 {
-  "name": "RalfEggert/dwx2015-code-generierung",
-  "description": "Library for creating and dispatching console commands",
-  "type": "library",
+  "name": "ralfeggert/dwx2015-code-generierung",
+  "description": "DWX2015: Tool zur Code-Generierung",
   "license": "MIT",
   "require": {
     "php": ">=5.5",
