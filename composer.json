@@ -1,0 +1,20 @@
+{
+  "name": "RalfEggert/dwx2015-code-generierung",
+  "description": "Library for creating and dispatching console commands",
+  "type": "library",
+  "license": "MIT",
+  "require": {
+    "php": ">=5.5",
+    "zfcampus/zf-console": "~1.0",
+    "zendframework/zend-code": "~2.5",
+    "zendframework/zend-config": "~2.5",
+    "zendframework/zend-console": "~2.5",
+    "zendframework/zend-db": "~2.5"
+  },
+  "autoload": {
+    "psr-4": {
+      "PHPCG\\": "src/PHPCG"
+    }
+  },
+  "bin": ["bin/phpcg.php"]
+}
