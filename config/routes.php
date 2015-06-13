@@ -32,4 +32,11 @@ return array(
         'short_description' => 'Hello someone',
         'handler'           => 'PHPCG\Command\HelloSomeOne',
     ),
+    array(
+        'name'              => 'create-hello-you-class',
+        'route'             => 'create-hello-you-class',
+        'description'       => 'Create a hello you class',
+        'short_description' => 'Create hello you class',
+        'handler'           => 'PHPCG\Command\CreateHelloYouClass',
+    ),
 );

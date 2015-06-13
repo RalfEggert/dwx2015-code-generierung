@@ -30,6 +30,6 @@ class HelloWorld
      */
     public function __invoke(Route $route, Console $console)
     {
-        $console->writeLine('Hello World', Color::BLUE);
+        $console->writeLine('Hello World', Color::YELLOW);
     }
 }
