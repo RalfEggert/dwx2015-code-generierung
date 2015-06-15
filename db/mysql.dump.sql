@@ -13,7 +13,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   `firstname` varchar(64) NOT NULL,
   `lastname` varchar(64) NOT NULL,
   `country` enum('de','at','ch','it') NOT NULL,
-  `description` text NOT NULL,
+  `description` text,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='User data' AUTO_INCREMENT=4 ;
 

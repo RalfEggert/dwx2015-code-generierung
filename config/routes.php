@@ -39,4 +39,11 @@ return array(
         'short_description' => 'Create hello you class',
         'handler'           => 'PHPCG\Command\CreateHelloYouClass',
     ),
+    array(
+        'name'              => 'create-user-entities',
+        'route'             => 'create-user-entities',
+        'description'       => 'Create all user entities for database',
+        'short_description' => 'Create user entities',
+        'handler'           => 'PHPCG\Command\CreateUserEntities',
+    ),
 );

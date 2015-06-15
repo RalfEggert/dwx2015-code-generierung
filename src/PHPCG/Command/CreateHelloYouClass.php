@@ -32,7 +32,7 @@ class CreateHelloYouClass
      */
     public function __invoke(Route $route, Console $console)
     {
-        $fileName = realpath(DWX2015_PHPCG_ROOT . '/tmp/HelloYouClass.php');
+        $fileName = DWX2015_PHPCG_ROOT . '/tmp/HelloYouClass.php';
 
         $class = new HelloYouClassGenerator();
         $file  = new ClassFileGenerator($class);
@@ -40,7 +40,7 @@ class CreateHelloYouClass
         file_put_contents($fileName, $file->generate());
 
         $console->write('Created class ' . $console->colorize($class->getName(), Color::YELLOW));
-        $console->writeLine(' in file ' . $console->colorize($fileName, Color::YELLOW));
+        $console->writeLine(' in file ' . $console->colorize(realpath($fileName), Color::YELLOW));
         $console->writeLine();
         $console->writeLine($file->generate());
         $console->writeLine();

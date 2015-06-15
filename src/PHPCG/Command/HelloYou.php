@@ -32,8 +32,8 @@ class HelloYou
     {
         $you = $route->getMatchedParam('you');
 
-        $console->write('Hello');
-        $console->write(sprintf(' %s', $you), Color::YELLOW);
-        $console->writeLine('...');
+        $console->write('Hello ');
+        $console->write(sprintf('"%s"', $you), Color::YELLOW);
+        $console->writeLine(' ...');
     }
 }
