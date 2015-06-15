@@ -19,12 +19,25 @@ use Zend\Code\Generator\PropertyGenerator;
  *
  * @package PHPCG\Generator
  */
-class HelloYouClassGenerator extends ClassGenerator
+class HelloYouClassGenerator
 {
     /**
-     * Create HelloYouClass
+     * @var ClassGenerator
      */
-    public function __construct()
+    private $class;
+
+    /**
+     * @return ClassGenerator
+     */
+    public function getClass()
+    {
+        return $this->class;
+    }
+
+    /**
+     * Create class
+     */
+    public function createClass()
     {
         $nameProperty = new PropertyGenerator('name');
         $nameProperty->addFlag(PropertyGenerator::FLAG_PRIVATE);
@@ -44,8 +57,8 @@ class HelloYouClassGenerator extends ClassGenerator
             'return sprintf("Hello %s!", $this->name);'
         );
 
-        parent::__construct('HelloYou', 'Hello\Greeting');
-        $this->addPropertyFromGenerator($nameProperty);
-        $this->addMethods(array($nameSetMethod, $greetMethod));
+        $this->class = new ClassGenerator('HelloYou', 'Hello\Greeting');
+        $this->class->addPropertyFromGenerator($nameProperty);
+        $this->class->addMethods(array($nameSetMethod, $greetMethod));
     }
 }

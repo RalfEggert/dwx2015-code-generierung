@@ -22,8 +22,13 @@ use Zend\Filter\Word\UnderscoreToCamelCase;
  *
  * @package PHPCG\Generator
  */
-class UserEntityGenerator extends ClassGenerator
+class UserEntityGenerator
 {
+    /**
+     * @var ClassGenerator
+     */
+    private $class;
+
     /**
      * @var UnderscoreToCamelCase
      */
@@ -31,16 +36,28 @@ class UserEntityGenerator extends ClassGenerator
 
     /**
      * Create UserEntity
-     *
-     * @param array $columns
      */
-    public function __construct(array $columns = array())
+    public function __construct()
     {
         $this->filterUnderscoreToCamelCase = new UnderscoreToCamelCase();
+    }
 
-        parent::__construct('UserEntity', 'User\Entity');
+    /**
+     * @return ClassGenerator
+     */
+    public function getClass()
+    {
+        return $this->class;
+    }
 
-        $this->setDocBlock(
+    /**
+     * Init entity class
+     */
+    public function createClass()
+    {
+        $this->class = new ClassGenerator('UserEntity', 'User\Entity');
+
+        $this->class->setDocBlock(
             new DocBlockGenerator(
                 'Class User\Entity',
                 null,
@@ -52,15 +69,23 @@ class UserEntityGenerator extends ClassGenerator
                 )
             )
         );
+    }
 
+    /**
+     * Add properties to entity class
+     *
+     * @param array $columns
+     */
+    public function addEntityProperties(array $columns = array())
+    {
         foreach ($columns as $name => $attributes) {
             $property  = $this->generateProperty($name, $attributes);
             $getMethod = $this->generateGetMethod($name, $attributes);
             $setMethod = $this->generateSetMethod($name, $attributes);
 
-            $this->addPropertyFromGenerator($property);
-            $this->addMethodFromGenerator($getMethod);
-            $this->addMethodFromGenerator($setMethod);
+            $this->class->addPropertyFromGenerator($property);
+            $this->class->addMethodFromGenerator($getMethod);
+            $this->class->addMethodFromGenerator($setMethod);
         }
     }
 
@@ -70,10 +95,10 @@ class UserEntityGenerator extends ClassGenerator
      *
      * @return PropertyGenerator
      */
-    protected function generateProperty($name, array $attributes = array())
+    private function generateProperty($name, array $attributes = array())
     {
         $property = new PropertyGenerator($name);
-        $property->addFlag(PropertyGenerator::FLAG_PROTECTED);
+        $property->addFlag(PropertyGenerator::FLAG_PRIVATE);
         $property->setDocBlock(
             new DocBlockGenerator(
                 $name . ' property',
@@ -96,7 +121,7 @@ class UserEntityGenerator extends ClassGenerator
      *
      * @return MethodGenerator
      */
-    protected function generateGetMethod($name, array $attributes = array())
+    private function generateGetMethod($name, array $attributes = array())
     {
         $methodName = 'get' . $this->filterUnderscoreToCamelCase->filter($name);
 
@@ -125,7 +150,7 @@ class UserEntityGenerator extends ClassGenerator
      *
      * @return MethodGenerator
      */
-    protected function generateSetMethod($name, array $attributes = array())
+    private function generateSetMethod($name, array $attributes = array())
     {
         $methodName   = 'set' . $this->filterUnderscoreToCamelCase->filter($name);
         $defaultValue = !$attributes['required'] ? new ValueGenerator(null) : null;

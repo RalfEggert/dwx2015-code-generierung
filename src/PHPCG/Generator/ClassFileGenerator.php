@@ -18,14 +18,27 @@ use Zend\Code\Generator\FileGenerator;
  *
  * @package PHPCG\Generator
  */
-class ClassFileGenerator extends FileGenerator
+class ClassFileGenerator
 {
+    /**
+     * @var FileGenerator
+     */
+    private $file;
+
+    /**
+     * @return FileGenerator
+     */
+    public function getFile()
+    {
+        return $this->file;
+    }
+
     /**
      * Create File for a class
      *
      * @param ClassGenerator $class
      */
-    public function __construct(ClassGenerator $class)
+    public function createFile(ClassGenerator $class)
     {
         $docBlock = new DocBlockGenerator(
             'Automatically generated file',
@@ -42,8 +55,8 @@ class ClassFileGenerator extends FileGenerator
             )
         );
 
-        parent::__construct();
-        $this->setClass($class);
-        $this->setDocBlock($docBlock);
+        $this->file = new FileGenerator();
+        $this->file->setClass($class);
+        $this->file->setDocBlock($docBlock);
     }
 }

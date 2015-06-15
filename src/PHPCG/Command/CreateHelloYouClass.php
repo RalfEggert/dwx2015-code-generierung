@@ -34,8 +34,13 @@ class CreateHelloYouClass
     {
         $fileName = DWX2015_PHPCG_ROOT . '/tmp/HelloYouClass.php';
 
-        $class = new HelloYouClassGenerator();
-        $file  = new ClassFileGenerator($class);
+        $classGenerator = new HelloYouClassGenerator();
+        $classGenerator->createClass();
+        $class = $classGenerator->getClass();
+
+        $fileGenerator  = new ClassFileGenerator();
+        $fileGenerator->createFile($class);
+        $file = $fileGenerator->getFile();
 
         file_put_contents($fileName, $file->generate());
 

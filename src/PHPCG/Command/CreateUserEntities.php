@@ -43,15 +43,22 @@ class CreateUserEntities
         $collector = new MetaDataCollector($metaData);
 
         $userColumns = $collector->fetchTableColumns('user');
-        $userClass   = new UserEntityGenerator($userColumns);
-        $userFile    = new ClassFileGenerator($userClass);
 
-        file_put_contents($fileName, $userFile->generate());
+        $classGenerator = new UserEntityGenerator();
+        $classGenerator->createClass();
+        $classGenerator->addEntityProperties($userColumns);
+        $class = $classGenerator->getClass();
 
-        $console->write('Created class ' . $console->colorize($userClass->getName(), Color::YELLOW));
+        $fileGenerator = new ClassFileGenerator();
+        $fileGenerator->createFile($class);
+        $file = $fileGenerator->getFile();
+
+        file_put_contents($fileName, $file->generate());
+
+        $console->write('Created class ' . $console->colorize($class->getName(), Color::YELLOW));
         $console->writeLine(' in file ' . $console->colorize(realpath($fileName), Color::YELLOW));
         $console->writeLine();
-        $console->writeLine($userFile->generate());
+        $console->writeLine($file->generate());
         $console->writeLine();
     }
 }
