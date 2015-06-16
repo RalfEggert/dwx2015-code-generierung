@@ -40,10 +40,29 @@ return array(
         'handler'           => 'PHPCG\Command\CreateHelloYouClass',
     ),
     array(
-        'name'              => 'create-user-entities',
-        'route'             => 'create-user-entities',
-        'description'       => 'Create all user entities for database',
-        'short_description' => 'Create user entities',
-        'handler'           => 'PHPCG\Command\CreateUserEntities',
+        'name'                 => 'create-user-entities',
+        'route'                => 'create-user-entities [--validation|-v]:validation',
+        'description'          => 'Create all user entities for database',
+        'short_description'    => 'Create user entities',
+        'options_descriptions' => array(
+            '-v' => 'Whether or not to add entity validation',
+        ),
+        'defaults'             => array(
+            'validation' => false,
+        ),
+        'handler'              => 'PHPCG\Command\CreateUserEntities',
+    ),
+    array(
+        'name'              => 'update-user-entities',
+        'route'             => 'update-user-entities [--validation|-v]:validation',
+        'description'       => 'Update all user entities for database',
+        'short_description' => 'Update user entities',
+        'options_descriptions' => array(
+            '-v' => 'Whether or not to add entity validation',
+        ),
+        'defaults'             => array(
+            'validation' => false,
+        ),
+        'handler'           => 'PHPCG\Command\UpdateUserEntities',
     ),
 );

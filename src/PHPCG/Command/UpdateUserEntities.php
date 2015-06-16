@@ -19,11 +19,11 @@ use Zend\Db\Metadata\Metadata;
 use ZF\Console\Route;
 
 /**
- * Class CreateUserEntities
+ * Class UpdateUserEntities
  *
  * @package PHPCG\Command
  */
-class CreateUserEntities
+class UpdateUserEntities
 {
     /**
      * Create a new hello you class
@@ -47,7 +47,7 @@ class CreateUserEntities
         $userColumns = $collector->fetchTableColumns('user');
 
         $classGenerator = new UserEntityGenerator();
-        $classGenerator->createClass();
+        $classGenerator->loadClass($fileName);
         $classGenerator->addEntityProperties($userColumns, $validation);
         $class = $classGenerator->getClass();
 
