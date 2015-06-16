@@ -226,7 +226,6 @@ class UserEntityGenerator
                 $body.= '    throw new \InvalidArgumentException(\'Invalid value\');' . "\n";
                 $body.= '}' . "\n";
             }
-
         }
 
         $body .= '$this->' . $name . ' = $' . $name . ';';
