@@ -36,14 +36,14 @@ class UserEntityGenerator
     /**
      * @var UnderscoreToCamelCase
      */
-    private $filterUnderscoreToCamelCase;
+    private $filterUTCC;
 
     /**
      * Create UserEntity
      */
     public function __construct()
     {
-        $this->filterUnderscoreToCamelCase = new UnderscoreToCamelCase();
+        $this->filterUTCC = new UnderscoreToCamelCase();
     }
 
     /**
@@ -96,13 +96,13 @@ class UserEntityGenerator
                 if ($tag->getName() == 'generated' && $tag->getContent() == 'automatic') {
                     unset($properties[$name]);
 
-                    $getMethodName = strtolower('get' . $this->filterUnderscoreToCamelCase->filter($name));
+                    $getMethodName = strtolower('get' . $this->filterUTCC->filter($name));
 
                     if (isset($methods[$getMethodName])) {
                         unset($methods[$getMethodName]);
                     }
 
-                    $setMethodName = strtolower('set' . $this->filterUnderscoreToCamelCase->filter($name));
+                    $setMethodName = strtolower('set' . $this->filterUTCC->filter($name));
 
                     if (isset($methods[$setMethodName])) {
                         unset($methods[$setMethodName]);
@@ -173,7 +173,7 @@ class UserEntityGenerator
      */
     private function generateGetMethod($name, array $attributes = array())
     {
-        $methodName = 'get' . $this->filterUnderscoreToCamelCase->filter($name);
+        $methodName = 'get' . $this->filterUTCC->filter($name);
 
         $getMethod = new MethodGenerator($methodName);
         $getMethod->addFlag(MethodGenerator::FLAG_PUBLIC);
@@ -207,7 +207,7 @@ class UserEntityGenerator
      */
     private function generateSetMethod($name, array $attributes = array(), $validation = false)
     {
-        $methodName   = 'set' . $this->filterUnderscoreToCamelCase->filter($name);
+        $methodName   = 'set' . $this->filterUTCC->filter($name);
         $defaultValue = !$attributes['required'] ? new ValueGenerator(null) : null;
 
         $body = '';

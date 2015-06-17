@@ -32,7 +32,7 @@ class HelloSomeOne
      */
     public function __invoke(Route $route, Console $console)
     {
-        $prompt = new Line('Please enter any name: ', false);
+        $prompt = new Line('Please enter any name: ');
 
         $you = $prompt->show();
 
@@ -46,7 +46,7 @@ class HelloSomeOne
             Color::BLUE   => 'BLUE',
         );
 
-        $prompt = new Select('Please choose any color: ', $options, false);
+        $prompt = new Select('Please choose any color: ', $options);
 
         $color = $prompt->show();
 
